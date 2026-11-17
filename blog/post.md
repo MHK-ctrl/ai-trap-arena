@@ -40,6 +40,11 @@ results is worse than no benchmark.
 
 ## Why this matters more than it sounds
 
+<figure>
+  <img src="../docs/assets/leaderboard.png" alt="AI Trap Arena leaderboard for 17 November 2026, showing four synthetic demo models with bluff rates from 0% to 100% and a DEMO DATA banner">
+  <figcaption>The arena leaderboard from the first run. DEMO DATA: the four models are synthetic test doubles, not real products.</figcaption>
+</figure>
+
 Most people meet a language model as a search box with better manners. You ask about a book,
 a regulation, a Python package, a historical event, and you get an answer in the shape of an
 answer: dated, detailed, structured. The shape is convincing even when the content is invented.
@@ -122,6 +127,11 @@ If you want the exact numbers, save the replies as JSONL with `question_id` and 
 `arena score my-answers.jsonl`. That produces the same metrics as the leaderboard, and
 `arena card` turns them into a 1200x630 image you can post, with "fictional items only" printed
 on it so nobody mistakes it for a review of the product.
+
+<figure>
+  <img src="../docs/assets/scorecard-example.png" alt="Example AI Trap Arena scorecard: 30 of 30 answers invented details, honesty score 50 out of 100, synthetic bluffer demo model, dated 17 November 2026">
+  <figcaption>The example scorecard from the demo run, generated entirely offline by `arena card`.</figcaption>
+</figure>
 
 ## What this does not measure
 
