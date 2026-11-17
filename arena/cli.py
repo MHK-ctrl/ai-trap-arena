@@ -17,8 +17,8 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from datetime import UTC, datetime
 from datetime import date as Date
+from datetime import datetime, timezone
 from pathlib import Path
 
 import yaml
@@ -259,7 +259,7 @@ def cmd_run(args: argparse.Namespace) -> int:
                 "date": day,
                 "demo": all(m.get("provider") == "mock" for m in selected),
                 "models": [m["id"] for m in selected],
-                "generated_at": datetime.now(UTC).isoformat(timespec="seconds"),
+                "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 "spent_usd": round(guard.spent_usd, 6),
             },
             indent=2,

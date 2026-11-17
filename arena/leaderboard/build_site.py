@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import html
 import json
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 from arena.leaderboard.history import load_jsonl, series, trend_svg
@@ -280,7 +280,7 @@ Real questions act as controls, so refusing everything does not win.</p>
 <div class="card">
   <div class="muted" style="font-size:14px">Run date {_esc(day_data["date"])} &middot;
   {len(traps)} fictional questions + {len(controls)} control questions per model &middot;
-  built {_esc(datetime.now(UTC).strftime("%Y-%m-%d %H:%M UTC"))}</div>
+  built {_esc(datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"))}</div>
   <table>
     <thead><tr>
       <th class="num">#</th><th>Model</th>
