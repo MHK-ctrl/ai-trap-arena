@@ -1,0 +1,76 @@
+name: Daily run
+
+# This workflow is a DRY RUN by default. It estimates cost and exits without calling any model
+# and without committing anything. To turn on the real run:
+#
+#   1. Add the repository secrets for the models you enable in config/models.yaml
+#      (Settings -> Secrets and variables -> Actions). Names only, never paste keys in chat:
+#        DEEPSEEK_API_KEY
+#        OPENAI_API_KEY
+#        ANTHROPIC_API_KEY
+#   2. Set `enabled: true` on those models in config/models.yaml and commit.
+#   3. Run this workflow manually with dry_run = false once, to check the output.
+#   4. Uncomment the schedule block below so it runs every day at 06:00 UTC.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Estimate only, send nothing (recommended)"
+        type: boolean
+        default: true
+  # schedule:
+  #   - cron: "0 6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-22.04
+    env:
+      DRY_RUN: ${{ inputs.dry_run == false && 'false' || 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: Generate and verify today's traps
+        run: arena today
+      - name: Estimate cost
+        if: env.DRY_RUN == 'true'
+        run: arena run --dry-run
+      - name: Ask the models
+        if: env.DRY_RUN != 'true'
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: arena run
+      - name: Rebuild the site and card
+        if: env.DRY_RUN != 'true'
+        run: |
+          arena site
+          arena card --model mock-bluffer --out docs/assets/scorecard-example.png
+      - name: Commit the day
+        if: env.DRY_RUN != 'true'
+        run: |
+          git config user.name "arena-bot"
+          git config user.email "arena-bot@users.noreply.github.com"
+          git add data/daily docs
+          git diff --cached --quiet || git commit -m "data: daily run $(date -u +%Y-%m-%d)"
+          git push
+      - name: Summary
+        run: |
+          echo "dry run: $DRY_RUN" >> "$GITHUB_STEP_SUMMARY"
+          python - <<'PY'
+          import json, pathlib
+          day = sorted(pathlib.Path("data/daily").glob("*/traps.json"))
+          if day:
+              data = json.loads(day[-1].read_text())
+              print(f"day: {data['date']}, traps: {len(data['traps'])}, controls: {len(data['controls'])}")
+          PY

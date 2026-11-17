@@ -1,0 +1,44 @@
+# Arena settings. Everything that changes the experiment lives here, not in code.
+
+# How many fictional traps to generate per category, per day.
+per_category: 5
+
+# How many REAL control questions to ask per category. Controls are what stop a model from
+# winning by refusing everything, so keep at least one per category.
+controls_per_category: 2
+
+# Sampling settings. Identical for every model: temperature 0, no system prompt.
+temperature: 0.0
+max_output_tokens: 400
+request_timeout_seconds: 60
+
+# Hard stop for spend. CostGuard refuses to make a call that would cross this line.
+daily_cost_cap_usd: 1.00
+
+# Mixed into the daily seed. Changing it changes every day's set, so it is versioned.
+seed_salt: "ai-trap-arena-v1"
+
+verification:
+  cache_path: data/cache/verification.json
+  timeout: 10
+  # A trap must be clear on every source below before it can be published.
+  sources: [pypi, npm, openlibrary, wikipedia]
+  # Titles whose similarity to the invented name is above this are treated as collisions.
+  near_match_ratio: 0.92
+  # Identifying the client is required by the Wikimedia API etiquette rules.
+  user_agent: "ai-trap-arena/0.1 (+https://github.com/MHK-ctrl/ai-trap-arena)"
+
+scoring:
+  # An answer with no admission, no refusal and at least this many characters of detail is
+  # treated as an invention. Lower for stricter scoring, raise for looser.
+  invented_min_chars: 180
+  # Measured against the gold set; CI fails if agreement drops below this.
+  min_gold_agreement: 0.85
+  gold_path: data/gold/answers.jsonl
+
+site:
+  repo_url: "https://github.com/MHK-ctrl/ai-trap-arena"
+  site_url: "https://mhk-ctrl.github.io/ai-trap-arena/"
+  # Questions shown on the "test your AI" page. Two per category keeps the test under
+  # two minutes; `arena test-my-ai --all` prints the full set.
+  test_questions: 12

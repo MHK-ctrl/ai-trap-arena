@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-17",
+  "demo": true,
+  "models": [
+    "mock-bluffer",
+    "mock-mixed",
+    "mock-honest",
+    "mock-refuser"
+  ],
+  "generated_at": "2026-11-17T14:28:00+00:00",
+  "spent_usd": 0.0
+}

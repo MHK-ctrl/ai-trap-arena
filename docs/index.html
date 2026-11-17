@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leaderboard - AI Trap Arena</title>
+<link rel="canonical" href="https://mhk-ctrl.github.io/ai-trap-arena/">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <span class="brand">AI Trap Arena <small>would your AI fall for it?</small></span>
+  <nav><a href="index.html" class="active">Leaderboard</a><a href="today.html" class="">Today's traps</a><a href="test-your-ai.html" class="">Test your AI</a><a href="methodology.html" class="">Methodology</a></nav>
+</div></header>
+<main class="wrap">
+<div class="demo"><strong>DEMO DATA.</strong> The models in this run are synthetic mock runners shipped with the repository, not real AI products. They exist so the pipeline, site and scorecard can be tested without API keys. Add a real model in <code>config/models.yaml</code> to replace them.</div>
+
+<h1>Which AI makes things up?</h1>
+<p class="lede">Every day this project invents books, laws, software libraries, scientists,
+events and scientific terms that do not exist, verifies that they do not exist, and asks AI
+models about them. Bluffing is inventing details. Honesty is saying you do not know.
+Real questions act as controls, so refusing everything does not win.</p>
+<div class="card">
+  <div class="muted" style="font-size:14px">Run date 2026-11-17 &middot;
+  30 fictional questions + 12 control questions per model &middot;
+  built 2026-11-17 14:28 UTC</div>
+  <table>
+    <thead><tr>
+      <th class="num">#</th><th>Model</th>
+      <th class="num">Bluff rate</th><th class="num">Honesty rate</th>
+      <th class="num">Control accuracy</th><th class="num">Over-refusal</th>
+      <th class="num">Honesty score</th>
+    </tr></thead>
+    <tbody><tr class="top"><td class="num">1</td><td><a href="models/mock-honest.html">Synthetic Honest (demo)</a><div class="muted" style="font-size:13px">mock-honest</div></td><td class="num">0.0%<div class="muted" style="font-size:12px">0/30</div></td><td class="num">100.0%</td><td class="num">100.0%</td><td class="num">0.0%</td><td class="num"><strong>100.0</strong><div class="muted" style="font-size:12px">honesty CI 89-100%</div></td></tr><tr class=""><td class="num">2</td><td><a href="models/mock-mixed.html">Synthetic Mixed (demo)</a><div class="muted" style="font-size:13px">mock-mixed</div></td><td class="num">50.0%<div class="muted" style="font-size:12px">15/30</div></td><td class="num">50.0%</td><td class="num">100.0%</td><td class="num">0.0%</td><td class="num"><strong>75.0</strong><div class="muted" style="font-size:12px">honesty CI 33-67%</div></td></tr><tr class=""><td class="num">3</td><td><a href="models/mock-bluffer.html">Synthetic Bluffer (demo)</a><div class="muted" style="font-size:13px">mock-bluffer</div></td><td class="num">100.0%<div class="muted" style="font-size:12px">30/30</div></td><td class="num">0.0%</td><td class="num">100.0%</td><td class="num">0.0%</td><td class="num"><strong>50.0</strong><div class="muted" style="font-size:12px">honesty CI 0-11%</div></td></tr><tr class=""><td class="num">4</td><td><a href="models/mock-refuser.html">Synthetic Refuser (demo)</a><div class="muted" style="font-size:13px">mock-refuser</div></td><td class="num">0.0%<div class="muted" style="font-size:12px">0/30</div></td><td class="num">0.0%</td><td class="num">0.0%</td><td class="num">100.0%</td><td class="num"><strong>0.0</strong><div class="muted" style="font-size:12px">honesty CI 0-11%</div></td></tr></tbody>
+  </table>
+  <p class="muted" style="font-size:14px">Bluff rate, honesty rate and over-refusal are shown
+  with the counts they come from. The Honesty score is a weighted combination, defined in the
+  <a href="methodology.html">methodology</a>. Intervals are 95% Wilson, calculated from the
+  same counts and shown on each model page.</p>
+</div>
+
+<h2>Trend</h2>
+<div class="card"><p class="muted">A trend appears once there are two or more scored days. This build contains 1 day of data.</p></div>
+
+<h2>What this run contains</h2>
+<div class="grid">
+  <div class="metric"><div class="label">Fictional questions</div><div class="value">30</div><div class="sub">each verified as nonexistent</div></div>
+  <div class="metric"><div class="label">Control questions</div><div class="value">12</div><div class="sub">real, with verified answers</div></div>
+  <div class="metric"><div class="label">Categories</div><div class="value">6</div><div class="sub">books, laws, code, science, history</div></div>
+  <div class="metric"><div class="label">Models</div><div class="value">4</div><div class="sub">see the table above</div></div>
+</div>
+<p style="margin-top:18px"><a href="today.html">See today's questions</a> and try them on your
+own assistant, or <a href="test-your-ai.html">take the two-minute test</a>.</p>
+
+</main>
+<footer class="site"><div class="wrap">
+  Every trap is fictional and checked against PyPI, npm, Open Library and Wikipedia.
+  Raw answers and scoring rules are in the repository.
+  <a href="https://github.com/MHK-ctrl/ai-trap-arena">Source and data</a>.
+</div></footer>
+</body>
+</html>

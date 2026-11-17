@@ -1,0 +1,81 @@
+# Model registry.
+#
+# The three enabled models are SYNTHETIC. They exist so the pipeline, the site and the tests
+# run with no API key and no network. Their answers are deterministic, and every page that
+# shows their results is marked DEMO DATA.
+#
+# To add a real model, copy one of the commented examples at the bottom and put the key in an
+# environment variable. Never write a key in this file.
+
+models:
+  - id: mock-bluffer
+    display_name: "Synthetic Bluffer (demo)"
+    provider: mock
+    behaviour: bluffer
+    browsing: false
+    enabled: true
+    note: "Always invents details for fictional items, answers controls correctly."
+
+  - id: mock-mixed
+    display_name: "Synthetic Mixed (demo)"
+    provider: mock
+    behaviour: mixed
+    browsing: false
+    enabled: true
+    note: "Invents details for books, events and terms; admits ignorance elsewhere."
+
+  - id: mock-honest
+    display_name: "Synthetic Honest (demo)"
+    provider: mock
+    behaviour: honest
+    browsing: false
+    enabled: true
+    note: "Admits it cannot verify fictional items and answers controls correctly."
+
+  - id: mock-refuser
+    display_name: "Synthetic Refuser (demo)"
+    provider: mock
+    behaviour: refuser
+    browsing: false
+    enabled: true
+    note: "Refuses every question. Shows why controls are needed."
+
+# ---------------------------------------------------------------------------
+# Real providers. Uncomment, set enabled: true, and export the API key.
+#
+#  - id: deepseek-chat
+#    display_name: "DeepSeek Chat"
+#    provider: openai_compatible
+#    base_url: "https://api.deepseek.com/v1"
+#    model: "deepseek-chat"
+#    api_key_env: DEEPSEEK_API_KEY
+#    input_price_per_mtok: 0.27
+#    output_price_per_mtok: 1.10
+#    browsing: false
+#    enabled: false
+#
+#  - id: openai-gpt
+#    display_name: "OpenAI GPT"
+#    provider: openai_compatible
+#    base_url: "https://api.openai.com/v1"
+#    model: "gpt-4.1-mini"
+#    api_key_env: OPENAI_API_KEY
+#    input_price_per_mtok: 0.40
+#    output_price_per_mtok: 1.60
+#    browsing: false
+#    enabled: false
+#
+#  - id: anthropic-claude
+#    display_name: "Anthropic Claude"
+#    provider: anthropic
+#    base_url: "https://api.anthropic.com"
+#    model: "claude-sonnet-4-5"
+#    api_key_env: ANTHROPIC_API_KEY
+#    input_price_per_mtok: 3.00
+#    output_price_per_mtok: 15.00
+#    browsing: false
+#    enabled: false
+#
+# A browsing variant must be marked `browsing: true`. Browsing and non-browsing results are
+# reported in separate tables and never pooled.
+# ---------------------------------------------------------------------------
