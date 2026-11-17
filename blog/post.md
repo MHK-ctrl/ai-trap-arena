@@ -32,7 +32,7 @@ page count, the plot, a sentence of reviewer praise. Nothing in the answer sugge
 That is the behaviour I wanted to measure, and the reason this project exists.
 
 **One honest caveat before the numbers.** The first run you will see below is a *demo*. It uses
-three synthetic test models that ship with the code, because I do not have API keys for real
+four synthetic test models that ship with the code, because I do not have API keys for real
 providers on this machine and I was not going to invent their results. The pipeline, the
 verification, the scoring and the site are real. The models in the table are not. Every page of
 the site says so, in a yellow banner, because a benchmark that quietly mixes demo data with real
