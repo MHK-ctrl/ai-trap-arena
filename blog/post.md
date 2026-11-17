@@ -170,9 +170,10 @@ They were the ones that decide whether the numbers mean anything:
 
 ## Try it, break it, submit a trap
 
-The repository is at **https://github.com/MHK-ctrl/ai-trap-arena** and the live site is at
-**https://mhk-ctrl.github.io/ai-trap-arena/**. The test-your-AI page is
-**https://mhk-ctrl.github.io/ai-trap-arena/test-your-ai.html**.
+The repository is at [github.com/MHK-ctrl/ai-trap-arena](https://github.com/MHK-ctrl/ai-trap-arena)
+and the live site is at [mhk-ctrl.github.io/ai-trap-arena](https://mhk-ctrl.github.io/ai-trap-arena/).
+The [test-your-AI page](https://mhk-ctrl.github.io/ai-trap-arena/test-your-ai.html) prints the
+questions and the scorecard command.
 
 Run it on the assistant you use every day and tell me your score. If you find a trap that turns
 out to be real, open an issue with the evidence; that is the highest-priority bug this project
@@ -183,4 +184,4 @@ And if the idea is useful, star the repo. The next person who gets a confident a
 book that was never written should be able to check it.
 
 Repo again, because that is where everything lives:
-**https://github.com/MHK-ctrl/ai-trap-arena**
+[github.com/MHK-ctrl/ai-trap-arena](https://github.com/MHK-ctrl/ai-trap-arena).
